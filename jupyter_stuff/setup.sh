@@ -1,7 +1,7 @@
 #!/bin/bash
 
 sudo yum install python pip
-sudo pip install jupyterlab jupyterhub dockerspawner jupyterhub-dockerspawner
+sudo pip install jupyterlab jupyterhub dockerspawner jupyterhub-dockerspawner tabulate
 
 sudo yum install -y docker
 sudo systemctl start docker
