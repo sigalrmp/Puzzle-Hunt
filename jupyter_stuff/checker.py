@@ -4,6 +4,9 @@ from dataclasses import dataclass
 from typing import Any
 from contextlib import redirect_stdout
 import leaderboard
+import os
+
+user = os.environ["JUPYTERHUB_USER"]
 
 
 @dataclass
@@ -28,7 +31,6 @@ def is_correct_on_inputs(
 
 
 def attempt_solution(
-    username: str,
     puzzle_name: str,
     user_f: Callable,
     correct_f: Callable,
@@ -36,7 +38,7 @@ def attempt_solution(
     real_input: Any,
 ):
     if is_correct_on_inputs(user_f, correct_f, example_inputs):
-        leaderboard.update_leaderboard(username, puzzle_name)
+        leaderboard.update_leaderboard(user, puzzle_name)
         print(f"\033[32m{user_f(real_input)}\033[0m")
     else:
         print("\033[31mIncorrect :(\033[0m")
