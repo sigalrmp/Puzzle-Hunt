@@ -1,4 +1,5 @@
 import socket
+import pickle
 import os
 from typing import Dict, Tuple, Set
 from tabulate import tabulate
@@ -22,7 +23,10 @@ def clear_screen() -> None:
     os.system("cls" if os.name == "nt" else "clear")
 
 
-def display_leaderboard(puzzles_completed: Dict[str, Set[str]]) -> None:
+LeaderboardT = Dict[str, Set[str]]
+
+
+def display_leaderboard(puzzles_completed: LeaderboardT) -> None:
     leaderboard = [
         [name, len(individual_puzzles_completed)]
         for name, individual_puzzles_completed in puzzles_completed.items()
@@ -32,15 +36,32 @@ def display_leaderboard(puzzles_completed: Dict[str, Set[str]]) -> None:
     print(tabulate(leaderboard, headers=headers, tablefmt="simple"))
 
 
+LEADERBOARD_F = "leaderboard.obj"
+
+
+def load_leaderboard() -> LeaderboardT:
+    if os.path.exists(LEADERBOARD_F):
+        with open(LEADERBOARD_F, "rb") as f:
+            return pickle.load(f)
+    else:
+        return {}
+
+
+def save_leaderboard(leaderboard: LeaderboardT):
+    with open(LEADERBOARD_F, "wb+") as f:
+        pickle.dump(leaderboard, f)
+
+
 def run_learboard_server():
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server.bind(("", LEADERBOARD_PORT))
     server.listen(1)
 
-    puzzles_completed: Dict[str, Set[str]] = {}
+    puzzles_completed: LeaderboardT = load_leaderboard()
 
     while True:
         display_leaderboard(puzzles_completed)
+        save_leaderboard(puzzles_completed)
         conn, _add = server.accept()
         data = conn.recv(1024).decode()
         conn.close()
