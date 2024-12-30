@@ -1,4 +1,4 @@
-import os
+import docker
 
 c = get_config()
 
@@ -13,7 +13,7 @@ c.JupyterHub.port = 8000
 # Create a custom Docker network instead of using bridge
 c.DockerSpawner.network_name = "jupyterhub"
 c.DockerSpawner.use_internal_ip = True
-
+c.DockerSpawner.post_start_cmd = 'sh -c "cd work && python compile.py && rm leaderboard.py && rm checker.py && rm correct_puzzle_hunt.py && rm compile.py"'
 # Container configuration
 c.DockerSpawner.image = "jupyterhub-user"
 c.DockerSpawner.notebook_dir = "/home/jovyan/work"
