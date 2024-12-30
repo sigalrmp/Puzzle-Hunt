@@ -73,7 +73,7 @@ def run_learboard_server():
 
 def update_leaderboard(name: str, puzzle_completed: str):
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    client.connect(("host.docker.internal", LEADERBOARD_PORT))
+    client.connect(("172.17.0.1", LEADERBOARD_PORT))
     client.send(encode_msg(name, puzzle_completed).encode())
     client.close()
 
