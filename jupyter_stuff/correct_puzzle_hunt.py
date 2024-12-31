@@ -1,5 +1,4 @@
 import checker
-import getpass
 
 
 def run_puzzle_1(f, input):
