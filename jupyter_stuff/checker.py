@@ -43,8 +43,8 @@ def attempt_solution(
         if expected_real_input == real_input:
             leaderboard.update_leaderboard(user, puzzle_name)
             print("\033[32mCorrect!\033[0m")
+            print(f"Output: {user_f(real_input)}")
         else:
             print(f"\033[31mIncorrect Input. Expected {expected_real_input}\033[0m")
-        print(f"\033[32m{user_f(real_input)}\033[0m")
     else:
         print("\033[31mIncorrect :(\033[0m")
