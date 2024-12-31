@@ -13,7 +13,8 @@
 10. chmod +x setup.sh run.sh
 11. ./setup.sh
 12. ./run.sh (should take about a minute the first time)
-13. In a new tab, run "python leaderboard.py"
+13. You will be able to find jupyterhub on http://<ec2_public_ip_address>:8000
+14. In a new tab, run "python leaderboard.py"
 
 Troubleshooting:
 setup.sh can be rerun. Often this will fix the issue, especially if it says something isn't installed.
