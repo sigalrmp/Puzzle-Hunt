@@ -4,7 +4,7 @@ def run_puzzle_0(f, input):
     def puzzle_0(n):
         return chr(n + 97)
 
-    checker.attempt_solution("puzzle_0", f, puzzle_0, {0, 10, 25}, 15, input)
+    checker.attempt_solution("puzzle_0", f, puzzle_0, {0, 10, 25}, 17, input)
 
 def run_puzzle_1(f, input):
     def puzzle_1(c):
@@ -48,7 +48,7 @@ def run_puzzle_4(f, input):
             if prime(n):
                 sum += n
         return sum
-    checker.attempt_solution("puzzle_4", f, puzzle_4, {[1, 2, 3, 4, 5], [6, 7, 8, 9, 10], [11, 12, 13, 14, 15, 16, 17, 18, 19]}, 
+    checker.attempt_solution("puzzle_4", f, puzzle_4, {(1, 2, 3, 4, 5), (6, 7, 8, 9, 10), (11, 12, 13, 14, 15, 16, 17, 18, 19)}, 
                              [123, 1657, 4312, 7717, 5678467, 3793, 1292, 77339, 198273, 928, 3427], input)
 
 def run_puzzle_5(f, input):
@@ -66,7 +66,7 @@ def run_puzzle_5(f, input):
             word += puzzle_0(rom_to_int(n) % 26)
         return word
 
-    checker.attempt_solution("puzzle_5", f, puzzle_5, {["XIIX", "LCL", "VVV"], ["LVX"], ["MLV", "XVCI"]}, ["XVVIMCDD", "CLXCDXCLXIIILC", "LXVICXILXICLX", "CLXVICLIIIXCLI", "IICCDXIXVLDIIMCILXCIX"], input)
+    checker.attempt_solution("puzzle_5", f, puzzle_5, {("XIIX", "LCL", "VVV"), ("LVX"), ("MLV", "XVCI")}, ["XVVIMCDD", "CLXCDXCLXIIILC", "LXVICXILXICLX", "CLXVICLIIIXCLI", "IICCDXIXVLDIIMCILXCIX"], input)
 
 def run_puzzle_6(f, input):
     def puzzle_1(c):
